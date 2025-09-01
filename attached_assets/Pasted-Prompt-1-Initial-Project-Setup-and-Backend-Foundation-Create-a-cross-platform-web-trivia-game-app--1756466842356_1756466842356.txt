@@ -1,0 +1,52 @@
+Prompt 1: Initial Project Setup and Backend Foundation
+“Create a cross-platform web trivia game app using React frontend and Node.js/Express backend. Include:
+* Frontend Setup: React with Tailwind CSS for responsive UI (mobile-first, pink theme as in reference screenshots), i18next for multilingual support (Arabic/English with RTL for Arabic).
+* Backend Setup: Express server with Socket.io for real-time matchmaking (1vs1/2vs2), Supabase/PostgreSQL database for users, scores, questions (tables: users [id, username, coins, rank, language, premium], games [id, mode, players, scores], questions [id, text_en, text_ar, image_url, answer, category]).
+* AI Integration: OpenAI API for generating questions (prompt: ‘Generate 10 trivia questions in English and Arabic for [category], with image suggestions and answers’).
+* Payments: Stripe integration for premium ($9.99/month) and coin packs.
+* Compatibility: Use Socket.io v4, Stripe v12, OpenAI v4, i18next v23 to avoid conflicts. Ensure cross-platform browser support (PWA manifest).
+* Minimum Features: User auth (Replit Auth or Supabase), coin system, basic home screen with rank/coins/score. Generate code structure with beginner comments, deployable to Vercel/Netlify. Provide setup instructions (e.g., .env keys for OPENAI_API_KEY, STRIPE_SECRET_KEY, SUPABASE_URL). Test for no errors in matchmaking queue.”
+Prompt 2: Frontend UI and Multilingual Support
+“Build on the previous trivia game setup. Focus on frontend UI:
+* Pages/Components: Home (rank, coins, score, ad rewards button, contests, battles buttons), Quiz Zone (category list with subcategories, question counts), Question Screen (image, scrambled letters input, hint/back/submit buttons), Profile (rewards, statistics, theme, language selector with English/Hindi/Spanish/Arabic options, RTL for Arabic), Coin Store (packs like 5/100/500/1000 coins, remove ads, premium upgrade).
+* Design: Pink theme (e.g., #FF69B4 accents), icons for categories, responsive for mobile/desktop.
+* Language: i18next for Arabic/English switching (default English, RTL layout flip for Arabic).
+* Animations: Framer Motion for button transitions, optional Three.js for simple 3D effects (e.g., spinning coins).
+* Integration: Fetch categories/questions from backend API; update coins/scores real-time via Socket.io.
+* Compatibility: Ensure no conflicts with Socket.io client in React; test multilingual rendering. Generate /src/components (e.g., CategoryList.jsx, QuestionDisplay.jsx) with comments. Provide test instructions for language switch and UI responsiveness.”
+Prompt 3: Multiplayer Matchmaking and Game Logic
+“Enhance the trivia game with multiplayer:
+* Matchmaking: Socket.io for 1vs1/2vs2 queues (joinQueue event, matchFound emit, create rooms). Random matching or play with friend (invite code).
+* Game Logic: In-room events for question sync (AI-generated from backend), answer submission, timer (30s/question), score calculation (correct +10, wrong -5).
+* Modes: 1vs1 (direct battle), 2vs2 (team scores).
+* Frontend: Lobby screen with mode selection, waiting animation, in-game UI with opponent scores.
+* Backend: Express routes for game start/end, Socket.io events for real-time (answerSubmit, gameOver). Save scores to Supabase.
+* Limits: 5 games/day for free, unlimited for premium (check in backend).
+* Compatibility: Socket.io with Express; no real-time conflicts (use namespaces for rooms). Generate /server/matchmaking.js and frontend /components/GameLobby.jsx with comments. Test for matchmaking without errors (e.g., simulate 4 players for 2vs2).”
+Prompt 4: AI Question Generation and Categories
+“Add AI question generation to the trivia game:
+* Backend: OpenAI endpoint (/api/questions) to generate questions (prompt: ‘Generate 5 trivia questions in English/Arabic for [category] with images, answers, difficulty’).
+* Categories: Predefined list (General Knowledge, Sports, News, Music, History, Science, Movies) with subcategories; store in Supabase.
+* Frontend: Quiz Zone fetches categories; on selection, loads AI questions for game.
+* Multilingual: Generate questions in both languages; user language determines display.
+* Integration: Tie to matchmaking—backend sends questions to room via Socket.io.
+* Compatibility: OpenAI v4 with Node.js; ensure JSON response parsing no errors. Generate /server/questions.js and update /components/QuizZone.jsx with comments. Test AI generation for Arabic/English without conflicts.”
+Prompt 5: Scores, Leaderboards, and Rewards
+“Implement scores and leaderboards:
+* Backend: Update scores in real-time (Socket.io emit), save to Supabase. Leaderboard route (/api/leaderboard) for top players by mode/language.
+* Frontend: Scoreboard in-game, global leaderboard page with filters (1vs1/2vs2).
+* Rewards: Coin system (earn 10 coins/win, deduct for entry fees); ad rewards button (simulate +5 coins).
+* Profile: Show user stats (wins, coins, rank).
+* Compatibility: Supabase queries with Socket.io updates; no sync conflicts. Generate /api/leaderboard/route.ts and /app/leaderboard/page.jsx with comments. Test scoring and leaderboard refresh.”
+Prompt 6: Stripe Payments and Premium Features
+“Integrate Stripe payments:
+* Backend: /api/stripe route for creating sessions; webhook for premium status update in Supabase (unlimited games/coins).
+* Frontend: Coin Store with packs ($1 for 100 coins, $9.99/month premium); remove ads option.
+* Limits: Premium unlocks unlimited games, extra coins.
+* Compatibility: Stripe SDK with Express; secure webhooks. Generate /components/CoinStore.jsx and backend webhook with comments. Test with Stripe test card (4242 4242 4242 4242).”
+Prompt 7: Final Polish, Testing, and Deployment
+“Finalize the trivia game:
+* Polish: Add referral system (share code for 50 coins), privacy/terms pages, error handling (e.g., disconnects).
+* Testing: Full flow—sign up, select language, join matchmaking, play trivia, earn coins, buy premium, check leaderboard.
+* Deployment: Setup for Vercel/Netlify; ensure Socket.io works on host.
+* Compatibility: End-to-end test for Arabic RTL, no conflicts. Provide deployment instructions and full test script.
