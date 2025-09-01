@@ -4,10 +4,10 @@
 import OpenAI from 'openai';
 import { errorLogger, ErrorCategory } from './utils/errorLogger.js';
 
-// Initialize OpenAI client - the newest OpenAI model is "gpt-5" which was released August 7, 2025. do not change this unless explicitly requested by the user
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
-});
+// Initialize OpenAI client only if an API key is provided
+// the newest OpenAI model is "gpt-5" which was released August 7, 2025. do not change this unless explicitly requested by the user
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const openai = OPENAI_API_KEY ? new OpenAI({ apiKey: OPENAI_API_KEY }) : null;
 
 // Predefined categories with subcategories
 export const QUESTION_CATEGORIES = {
