@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useTriviaGame } from '../../lib/stores/useTriviaGame';
 import { useAuth } from '../../lib/stores/useAuth';
+import { useLanguage } from '../../lib/stores/useLanguage';
 import { Button } from './button';
 import { 
   Home, 
@@ -15,36 +16,37 @@ import {
 export default function BottomNavigation() {
   const { gameState, setGameState } = useTriviaGame();
   const { isAuthenticated } = useAuth();
+  const { language } = useLanguage();
 
   const navItems = [
     {
       id: 'home',
       icon: Home,
-      label: 'Home',
+      label: language === 'ar' ? 'الرئيسية' : 'Home',
       route: 'home'
     },
     {
       id: 'quiz',
       icon: Play,
-      label: 'Quiz',
+      label: language === 'ar' ? 'اختبار' : 'Quiz',
       route: 'quiz-zone'
     },
     {
       id: 'leaderboard',
       icon: Trophy,
-      label: 'Ranks',
+      label: language === 'ar' ? 'الترتيب' : 'Ranks',
       route: 'leaderboard'
     },
     {
       id: 'coins',
       icon: Coins,
-      label: 'Store',
+      label: language === 'ar' ? 'المتجر' : 'Store',
       route: 'coin-store'
     },
     {
       id: 'profile',
       icon: User,
-      label: 'Profile',
+      label: language === 'ar' ? 'الملف' : 'Profile',
       route: 'profile'
     }
   ];

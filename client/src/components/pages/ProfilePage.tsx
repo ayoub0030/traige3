@@ -208,8 +208,8 @@ export default function ProfilePage() {
             <ArrowLeft className="h-4 w-4" />
           </Button>
           <div>
-            <h1 className="text-2xl font-bold text-primary">Profile</h1>
-            <p className="text-sm text-muted-foreground">Manage your account</p>
+            <h1 className="text-2xl font-bold text-primary">{language === 'ar' ? 'الملف الشخصي' : 'Profile'}</h1>
+            <p className="text-sm text-muted-foreground">{language === 'ar' ? 'إدارة حسابك' : 'Manage your account'}</p>
           </div>
         </motion.div>
 
@@ -223,11 +223,11 @@ export default function ProfilePage() {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-bold">
-                    {isAuthenticated ? user?.username : 'Guest Player'}
+                    {isAuthenticated ? user?.username : (language === 'ar' ? 'ضيف' : 'Guest Player')}
                   </h3>
                   <div className="flex items-center gap-2 mt-1">
                     <Badge variant="secondary">{userStats.rank}</Badge>
-                    <Badge variant="outline">Level {userStats.level}</Badge>
+                    <Badge variant="outline">{(language === 'ar' ? 'المستوى' : 'Level')} {userStats.level}</Badge>
                     {user?.premium && (
                       <Crown className="h-4 w-4 text-yellow-500" />
                     )}
@@ -244,7 +244,7 @@ export default function ProfilePage() {
                       {(user?.coins || 0).toLocaleString()}
                     </span>
                   </div>
-                  <p className="text-xs text-muted-foreground">Coins</p>
+                  <p className="text-xs text-muted-foreground">{language === 'ar' ? 'عملة' : 'Coins'}</p>
                 </div>
                 <div>
                   <div className="flex items-center justify-center gap-1">
@@ -253,7 +253,7 @@ export default function ProfilePage() {
                       {highScore.toLocaleString()}
                     </span>
                   </div>
-                  <p className="text-xs text-muted-foreground">Best Score</p>
+                  <p className="text-xs text-muted-foreground">{language === 'ar' ? 'أفضل نتيجة' : 'Best Score'}</p>
                 </div>
                 <div>
                   <div className="flex items-center justify-center gap-1">
@@ -262,7 +262,7 @@ export default function ProfilePage() {
                       {userStats.totalGamesPlayed}
                     </span>
                   </div>
-                  <p className="text-xs text-muted-foreground">Games</p>
+                  <p className="text-xs text-muted-foreground">{language === 'ar' ? 'الألعاب' : 'Games'}</p>
                 </div>
               </div>
             </CardContent>
@@ -275,40 +275,40 @@ export default function ProfilePage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <BarChart3 className="h-5 w-5 text-primary" />
-                Statistics
+                {language === 'ar' ? 'الإحصائيات' : 'Statistics'}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div className="text-center p-3 rounded-lg bg-muted/30">
                   <p className="text-2xl font-bold text-green-500">{userStats.accuracy}%</p>
-                  <p className="text-xs text-muted-foreground">Accuracy</p>
+                  <p className="text-xs text-muted-foreground">{language === 'ar' ? 'الدقة' : 'Accuracy'}</p>
                 </div>
                 <div className="text-center p-3 rounded-lg bg-muted/30">
                   <p className="text-2xl font-bold text-blue-500">{userStats.averageTime}s</p>
-                  <p className="text-xs text-muted-foreground">Avg Time</p>
+                  <p className="text-xs text-muted-foreground">{language === 'ar' ? 'المتوسط الزمني' : 'Avg Time'}</p>
                 </div>
                 <div className="text-center p-3 rounded-lg bg-muted/30">
                   <p className="text-2xl font-bold text-orange-500">{userStats.longestStreak}</p>
-                  <p className="text-xs text-muted-foreground">Best Streak</p>
+                  <p className="text-xs text-muted-foreground">{language === 'ar' ? 'أفضل سلسلة' : 'Best Streak'}</p>
                 </div>
                 <div className="text-center p-3 rounded-lg bg-muted/30">
                   <p className="text-2xl font-bold text-purple-500">{userStats.dailyStreak}</p>
-                  <p className="text-xs text-muted-foreground">Daily Streak</p>
+                  <p className="text-xs text-muted-foreground">{language === 'ar' ? 'سلسلة يومية' : 'Daily Streak'}</p>
                 </div>
               </div>
 
               <div className="space-y-2">
                 <div className="flex justify-between text-sm">
-                  <span>Questions Answered</span>
+                  <span>{language === 'ar' ? 'الأسئلة المجابة' : 'Questions Answered'}</span>
                   <span className="font-medium">{userStats.questionsAnswered.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span>Time Spent</span>
+                  <span>{language === 'ar' ? 'الوقت المستغرق' : 'Time Spent'}</span>
                   <span className="font-medium">{userStats.timeSpent}h</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span>Correct Answers</span>
+                  <span>{language === 'ar' ? 'الإجابات الصحيحة' : 'Correct Answers'}</span>
                   <span className="font-medium">{userStats.correctAnswers.toLocaleString()}</span>
                 </div>
               </div>
@@ -322,7 +322,7 @@ export default function ProfilePage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Gift className="h-5 w-5 text-primary" />
-                Achievements
+                {language === 'ar' ? 'الإنجازات' : 'Achievements'}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
@@ -341,7 +341,7 @@ export default function ProfilePage() {
                     <p className="text-xs text-muted-foreground">{achievement.description}</p>
                   </div>
                   {achievement.earned && (
-                    <Badge className="bg-green-500 text-white text-xs">Earned</Badge>
+                    <Badge className="bg-green-500 text-white text-xs">{language === 'ar' ? 'مكتسبة' : 'Earned'}</Badge>
                   )}
                 </div>
               ))}
@@ -355,7 +355,7 @@ export default function ProfilePage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-lg">
                 <Settings className="h-5 w-5 text-primary" />
-                Settings
+                {language === 'ar' ? 'الإعدادات' : 'Settings'}
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -363,7 +363,7 @@ export default function ProfilePage() {
               <div className="space-y-2">
                 <label className="text-sm font-medium flex items-center gap-2">
                   <Globe className="h-4 w-4" />
-                  Language: {language} 
+                  {language === 'ar' ? 'اللغة' : 'Language'}: {language}
                 </label>
                 <div className="flex gap-2">
                   <Button
@@ -375,7 +375,7 @@ export default function ProfilePage() {
                     }}
                     className="flex items-center gap-2"
                   >
-                    🇺🇸 English
+                    🇺🇸 {language === 'ar' ? 'الإنجليزية' : 'English'}
                   </Button>
                   <Button
                     variant={language === 'ar' ? 'default' : 'outline'}
@@ -395,7 +395,7 @@ export default function ProfilePage() {
               <div className="space-y-2">
                 <label className="text-sm font-medium flex items-center gap-2">
                   <Palette className="h-4 w-4" />
-                  Theme
+                  {language === 'ar' ? 'السمة' : 'Theme'}
                 </label>
                 <div className="grid grid-cols-2 gap-2">
                   {themeOptions.map((themeOption) => (
@@ -420,7 +420,7 @@ export default function ProfilePage() {
 
               {/* Notifications */}
               <div className="flex items-center justify-between">
-                <label className="text-sm font-medium">Push Notifications</label>
+                <label className="text-sm font-medium">{language === 'ar' ? 'إشعارات الدفع' : 'Push Notifications'}</label>
                 <Switch 
                   checked={notificationsEnabled}
                   onCheckedChange={setNotificationsEnabled}

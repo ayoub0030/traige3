@@ -114,14 +114,14 @@ export default function HomePage() {
                   </div>
                   <div>
                     <h2 className="text-lg font-bold text-primary">
-                      {isAuthenticated ? user?.username : 'Guest Player'}
+                      {isAuthenticated ? user?.username : (language === 'ar' ? 'ضيف' : 'Guest Player')}
                     </h2>
                     <div className="flex items-center gap-2">
                       <Badge variant="secondary" className="text-xs">
                         {userStats.rank}
                       </Badge>
                       <Badge variant="outline" className="text-xs">
-                        Level {userStats.level}
+                        {(language === 'ar' ? 'المستوى' : 'Level')} {userStats.level}
                       </Badge>
                       {userStats.premium && (
                         <Crown className="h-4 w-4 text-yellow-500" />
@@ -140,7 +140,7 @@ export default function HomePage() {
                       {userStats.coins.toLocaleString()}
                     </span>
                   </div>
-                  <p className="text-xs text-muted-foreground">Coins</p>
+                  <p className="text-xs text-muted-foreground">{language === 'ar' ? 'عملة' : 'Coins'}</p>
                 </div>
                 <div className="space-y-1">
                   <div className="flex items-center justify-center gap-1">
@@ -149,7 +149,7 @@ export default function HomePage() {
                       {userStats.score.toLocaleString()}
                     </span>
                   </div>
-                  <p className="text-xs text-muted-foreground">Best Score</p>
+                  <p className="text-xs text-muted-foreground">{language === 'ar' ? 'أفضل نتيجة' : 'Best Score'}</p>
                 </div>
                 <div className="space-y-1">
                   <div className="flex items-center justify-center gap-1">
@@ -158,7 +158,7 @@ export default function HomePage() {
                       {userStats.level}
                     </span>
                   </div>
-                  <p className="text-xs text-muted-foreground">Level</p>
+                  <p className="text-xs text-muted-foreground">{language === 'ar' ? 'المستوى' : 'Level'}</p>
                 </div>
               </div>
             </HologramCard>
@@ -289,12 +289,12 @@ export default function HomePage() {
                   <FaBolt className="h-5 w-5" />
                 </div>
                 <div className="text-left">
-                  <p className="font-semibold">Quiz Zone</p>
-                  <p className="text-xs opacity-80">Solo Challenge</p>
+                  <p className="font-semibold">{language === 'ar' ? 'منطقة الاختبار' : 'Quiz Zone'}</p>
+                  <p className="text-xs opacity-80">{language === 'ar' ? 'تحدي فردي' : 'Solo Challenge'}</p>
                 </div>
               </div>
               <div className="text-right">
-                <p className="text-xs opacity-80">Play Now</p>
+                <p className="text-xs opacity-80">{language === 'ar' ? 'العب الآن' : 'Play Now'}</p>
               </div>
             </Button>
           </motion.div>
@@ -316,7 +316,7 @@ export default function HomePage() {
                 </div>
                 <div className="text-left">
                   <p className="font-semibold">{language === 'ar' ? 'مسابقه' : 'Contests'}</p>
-                  <p className="text-xs opacity-80">Weekly Tournaments</p>
+                  <p className="text-xs opacity-80">{language === 'ar' ? 'بطولات أسبوعية' : 'Weekly Tournaments'}</p>
                 </div>
               </div>
               <div className="text-right">
@@ -341,14 +341,14 @@ export default function HomePage() {
                   <Swords className="h-5 w-5" />
                 </div>
                 <div className="text-left">
-                  <p className="font-semibold">Battles</p>
-                  <p className="text-xs opacity-80">1v1 & Team Matches</p>
+                  <p className="font-semibold">{language === 'ar' ? 'معارك' : 'Battles'}</p>
+                  <p className="text-xs opacity-80">{language === 'ar' ? '1 ضد 1 وفرق' : '1v1 & Team Matches'}</p>
                 </div>
               </div>
               <div className="text-right">
                 <p className="text-xs opacity-80">
                   <Users className="inline h-3 w-3 mr-1" />
-                  23 Online
+                  {language === 'ar' ? '23 متصل' : '23 Online'}
                 </p>
               </div>
             </Button>
@@ -368,7 +368,7 @@ export default function HomePage() {
               onClick={() => setGameState('coin-store')}
             >
               <FaCoins className="h-4 w-4 text-yellow-500" />
-              <span className="text-xs">Coin Store</span>
+              <span className="text-xs">{language === 'ar' ? 'متجر العملات' : 'Coin Store'}</span>
             </Button>
           </motion.div>
 
@@ -383,7 +383,7 @@ export default function HomePage() {
               onClick={() => setGameState('friends')}
             >
               <FaUserFriends className="h-4 w-4 text-primary" />
-              <span className="text-xs">Friends</span>
+              <span className="text-xs">{language === 'ar' ? 'الأصدقاء' : 'Friends'}</span>
             </Button>
           </motion.div>
         </motion.div>
@@ -393,7 +393,7 @@ export default function HomePage() {
           <Card className="bg-card/50">
             <CardContent className="p-4">
               <div className="flex items-center justify-between mb-2">
-                <span className="text-sm font-medium">Level Progress</span>
+                <span className="text-sm font-medium">{language === 'ar' ? 'تقدم المستوى' : 'Level Progress'}</span>
                 <span className="text-xs text-muted-foreground">
                   {userStats.coins % 100}/100
                 </span>
