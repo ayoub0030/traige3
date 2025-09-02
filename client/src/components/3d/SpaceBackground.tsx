@@ -74,8 +74,8 @@ export function SpaceBackground({ quality = 'high' }: SpaceBackgroundProps) {
   });
 
   return (
-    <points ref={starsRef}>
-      <bufferGeometry>
+    <points ref={starsRef} key={starCount}>
+      <bufferGeometry key={starCount}>
         <bufferAttribute
           attach="attributes-position"
           count={starCount}

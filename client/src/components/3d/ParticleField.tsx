@@ -74,8 +74,8 @@ export function ParticleField({ quality = 'high' }: ParticleFieldProps) {
   });
 
   return (
-    <points ref={particlesRef}>
-      <bufferGeometry>
+    <points ref={particlesRef} key={particleCount}>
+      <bufferGeometry key={particleCount}>
         <bufferAttribute
           attach="attributes-position"
           count={particleCount}
