@@ -315,7 +315,7 @@ export default function HomePage() {
                   <FaTrophy className="h-5 w-5" />
                 </div>
                 <div className="text-left">
-                  <p className="font-semibold">Contests</p>
+                  <p className="font-semibold">{language === 'ar' ? 'مسابقه' : 'Contests'}</p>
                   <p className="text-xs opacity-80">Weekly Tournaments</p>
                 </div>
               </div>

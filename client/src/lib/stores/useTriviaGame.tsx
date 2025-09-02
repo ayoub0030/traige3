@@ -2,6 +2,7 @@ import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import { generateQuestions } from "../openai";
 import { getLocalStorage, setLocalStorage } from "../localStorage";
+import { useLanguage } from "./useLanguage";
 
 export interface TriviaQuestion {
   question: string;
@@ -131,7 +132,15 @@ export const useTriviaGame = create<TriviaGameState>()(
       } catch (error) {
         console.error('Failed to generate questions:', error);
         // Fallback to a sample question
-        const fallbackQuestion: TriviaQuestion = {
+        const lang = useLanguage.getState().language;
+        const fallbackQuestion: TriviaQuestion = lang === 'ar' ? {
+          question: "ما هي عاصمة فرنسا؟",
+          options: ["لندن", "برلين", "باريس", "مدريد"],
+          correctAnswer: 2,
+          category: "جغرافيا",
+          difficulty: "easy",
+          explanation: "باريس هي عاصمة فرنسا وأكبر مدنها من حيث عدد السكان."
+        } : {
           question: "What is the capital of France?",
           options: ["London", "Berlin", "Paris", "Madrid"],
           correctAnswer: 2,

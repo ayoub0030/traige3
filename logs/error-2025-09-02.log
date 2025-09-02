@@ -4,3 +4,13 @@
 {"timestamp":"2025-09-02T11:29:04.364Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}
 {"timestamp":"2025-09-02T11:34:43.984Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}
 {"timestamp":"2025-09-02T11:36:40.698Z","severity":"WARNING","category":"AI_GENERATION","message":"OpenAI API key not found, using fallback questions"}
+{"timestamp":"2025-09-02T11:44:17.416Z","severity":"WARNING","category":"AI_GENERATION","message":"OpenAI API key not found, using fallback questions"}
+{"timestamp":"2025-09-02T11:50:08.674Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}
+{"timestamp":"2025-09-02T11:50:54.228Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}
+{"timestamp":"2025-09-02T11:51:24.521Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}
+{"timestamp":"2025-09-02T11:51:59.175Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}
+{"timestamp":"2025-09-02T11:52:21.186Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}
+{"timestamp":"2025-09-02T11:52:24.911Z","severity":"WARNING","category":"AI_GENERATION","message":"OpenAI API key not found, using fallback questions"}
+{"timestamp":"2025-09-02T11:52:41.276Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}
+{"timestamp":"2025-09-02T11:53:37.131Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}
+{"timestamp":"2025-09-02T11:56:24.421Z","severity":"WARNING","category":"API","message":"HTTP 500 response","details":{"endpoint":"/api/leaderboard","method":"GET","ip":"127.0.0.1","statusCode":500,"body":{},"query":{"limit":"10","offset":"0"}}}

@@ -25,6 +25,7 @@ interface Translations {
   gameComplete: string;
   newHighScore: string;
   highScore: string;
+  home: string;
   accuracy: string;
   avgTime: string;
   bestStreak: string;
@@ -303,29 +304,29 @@ interface LanguageState {
 }
 
 export const useLanguage = create<LanguageState>((set, get) => {
-  // Force reset to English for now to fix the stuck Arabic issue
-  const initialLanguage: Language = 'en';
-  const initialTranslations = englishTranslations;
-  
-  // Clear any stored language and set to English
-  setLocalStorage('mirage_language', 'en');
-  document.documentElement.dir = 'ltr';
-  
+  // Load from localStorage if present
+  const saved = (getLocalStorage('mirage_language') as Language) || 'en';
+  const initialLanguage: Language = saved === 'ar' ? 'ar' : 'en';
+  const initialTranslations = initialLanguage === 'ar' ? arabicTranslations : englishTranslations;
+
+  // Set initial document direction
+  document.documentElement.dir = initialLanguage === 'ar' ? 'rtl' : 'ltr';
+
   return {
     language: initialLanguage,
     translations: initialTranslations,
-  
+
     setLanguage: (language) => {
       console.log('Setting language to:', language);
       const translations = language === 'en' ? englishTranslations : arabicTranslations;
       setLocalStorage('mirage_language', language);
-      
+
       // Update document direction for Arabic
       document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
-      
+
       set({ language, translations });
     },
-  
+
     toggleLanguage: () => {
       const currentLanguage = get().language;
       const newLanguage: Language = currentLanguage === 'en' ? 'ar' : 'en';
@@ -333,6 +334,3 @@ export const useLanguage = create<LanguageState>((set, get) => {
     }
   };
 })
-
-// Force initialize to English to fix stuck Arabic issue
-document.documentElement.dir = 'ltr';

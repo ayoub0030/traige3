@@ -1,5 +1,5 @@
-import OpenAI from "openai";
 import type { Category, Difficulty, TriviaQuestion } from "./stores/useTriviaGame";
+import { useLanguage } from "./stores/useLanguage";
 
 // For browser usage, we'll use server-side API instead of direct OpenAI calls
 // This is more secure and avoids exposing API keys
@@ -20,17 +20,14 @@ export const resetSessionId = () => {
   currentGameSessionId = null;
 };
 
-// Category mapping for fallback display names
+// Category mapping for fallback display names (keys must match Category type)
 const categoryMap: Record<Category, string> = {
-  'general-knowledge': 'General Knowledge',
+  general: 'General Knowledge',
   science: 'Science and Nature',
   history: 'History',
   geography: 'Geography',
   sports: 'Sports',
-  entertainment: 'Entertainment and Pop Culture',
-  music: 'Music',
-  nature: 'Nature',
-  general: 'General Knowledge'
+  entertainment: 'Entertainment and Pop Culture'
 };
 
 export async function generateQuestions(
@@ -39,7 +36,8 @@ export async function generateQuestions(
   count: number = 10
 ): Promise<TriviaQuestion[]> {
   try {
-    console.log('Requesting questions from server API:', { category, difficulty, count });
+    const language = useLanguage.getState().language;
+    console.log('Requesting questions from server API:', { category, difficulty, count, language });
 
     // Use server-side API instead of direct OpenAI calls
     const response = await fetch('/api/questions/generate', {
@@ -51,7 +49,7 @@ export async function generateQuestions(
         category,
         difficulty,
         count,
-        language: 'en', // Default to English, can be made configurable
+        language, // Use current UI language
         sessionId: getSessionId() // Include session ID to track questions
       })
     });
@@ -82,14 +80,19 @@ export async function generateQuestions(
 
   } catch (error) {
     console.error('Error generating questions with OpenAI:', error);
-    
-    // Fallback questions for demo purposes
-    return generateFallbackQuestions(category, difficulty, count);
+    // Fallback questions for demo purposes (respect current language)
+    const language = useLanguage.getState().language;
+    return generateFallbackQuestions(category, difficulty, count, language);
   }
 }
 
-function generateFallbackQuestions(category: Category, difficulty: Difficulty, count: number): TriviaQuestion[] {
-  const fallbackQuestions: Record<Category, TriviaQuestion[]> = {
+function generateFallbackQuestions(
+  category: Category,
+  difficulty: Difficulty,
+  count: number,
+  language: 'en' | 'ar'
+): TriviaQuestion[] {
+  const en: Record<Category, TriviaQuestion[]> = {
     general: [
       {
         question: "What is the largest planet in our solar system?",
@@ -103,7 +106,7 @@ function generateFallbackQuestions(category: Category, difficulty: Difficulty, c
         question: "Which element has the chemical symbol 'O'?",
         options: ["Gold", "Silver", "Oxygen", "Iron"],
         correctAnswer: 2,
-        category: "General Knowledge", 
+        category: "General Knowledge",
         difficulty,
         explanation: "Oxygen has the chemical symbol 'O'."
       }
@@ -160,17 +163,87 @@ function generateFallbackQuestions(category: Category, difficulty: Difficulty, c
     ]
   };
 
-  const categoryQuestions = fallbackQuestions[category] || fallbackQuestions.general;
-  
-  // Repeat questions if we need more than available
+  const ar: Record<Category, TriviaQuestion[]> = {
+    general: [
+      {
+        question: "ما هو أكبر كوكب في نظامنا الشمسي؟",
+        options: ["الأرض", "المشتري", "زحل", "المريخ"],
+        correctAnswer: 1,
+        category: "معلومات عامة",
+        difficulty,
+        explanation: "المشتري هو أكبر كوكب في نظامنا الشمسي."
+      },
+      {
+        question: "ما هو الرمز الكيميائي لعنصر الأكسجين؟",
+        options: ["Au", "Ag", "O", "Fe"],
+        correctAnswer: 2,
+        category: "معلومات عامة",
+        difficulty,
+        explanation: "الرمز الكيميائي للأكسجين هو O."
+      }
+    ],
+    science: [
+      {
+        question: "ما العملية التي تصنع بها النباتات غذاءها؟",
+        options: ["التنفس", "التمثيل الضوئي", "الهضم", "التخمير"],
+        correctAnswer: 1,
+        category: "علوم",
+        difficulty,
+        explanation: "التمثيل الضوئي هو عملية استخدام النباتات لضوء الشمس لإنتاج الغذاء."
+      }
+    ],
+    history: [
+      {
+        question: "في أي عام انتهت الحرب العالمية الثانية؟",
+        options: ["1944", "1945", "1946", "1947"],
+        correctAnswer: 1,
+        category: "تاريخ",
+        difficulty,
+        explanation: "انتهت الحرب العالمية الثانية عام 1945."
+      }
+    ],
+    geography: [
+      {
+        question: "ما هي عاصمة أستراليا؟",
+        options: ["سيدني", "ملبورن", "كانبرا", "بيرث"],
+        correctAnswer: 2,
+        category: "جغرافيا",
+        difficulty,
+        explanation: "كانبرا هي عاصمة أستراليا."
+      }
+    ],
+    sports: [
+      {
+        question: "كم عدد اللاعبين في فريق كرة السلة على أرض الملعب في نفس الوقت؟",
+        options: ["4", "5", "6", "7"],
+        correctAnswer: 1,
+        category: "رياضة",
+        difficulty,
+        explanation: "يتكون كل فريق كرة سلة من 5 لاعبين على أرض الملعب في نفس الوقت."
+      }
+    ],
+    entertainment: [
+      {
+        question: "أي فيلم فاز بجائزة الأوسكار لأفضل فيلم عام 2020؟",
+        options: ["جوكر", "1917", "الطفيلي Parasite", "ذات مرة في هوليوود"],
+        correctAnswer: 2,
+        category: "ترفيه",
+        difficulty,
+        explanation: "فاز فيلم الطفيلي (Parasite) بجائزة الأوسكار لأفضل فيلم عام 2020."
+      }
+    ]
+  };
+
+  const bank = language === 'ar' ? ar : en;
+  const categoryQuestions = bank[category] || bank.general;
+
   const result: TriviaQuestion[] = [];
   for (let i = 0; i < count; i++) {
-    const questionIndex = i % categoryQuestions.length;
+    const idx = i % categoryQuestions.length;
     result.push({
-      ...categoryQuestions[questionIndex],
-      difficulty // Ensure difficulty matches request
+      ...categoryQuestions[idx],
+      difficulty
     });
   }
-  
   return result;
 }
