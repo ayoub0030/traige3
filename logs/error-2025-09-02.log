@@ -1,0 +1,3 @@
+{"timestamp":"2025-09-02T11:07:10.881Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}
+{"timestamp":"2025-09-02T11:25:33.031Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}
+{"timestamp":"2025-09-02T11:27:07.551Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}

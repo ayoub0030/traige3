@@ -6,3 +6,9 @@
 {"timestamp":"2025-09-01T10:05:11.980Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"172.31.95.226","statusCode":401,"body":{},"query":{}}}
 {"timestamp":"2025-09-01T10:06:18.258Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"172.31.95.226","statusCode":401,"body":{},"query":{}}}
 {"timestamp":"2025-09-01T17:21:54.453Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}
+{"timestamp":"2025-09-01T17:53:05.343Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}
+{"timestamp":"2025-09-01T17:53:17.017Z","severity":"WARNING","category":"AI_GENERATION","message":"OpenAI API key not found, using fallback questions"}
+{"timestamp":"2025-09-01T18:13:13.459Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}
+{"timestamp":"2025-09-01T18:24:50.940Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}
+{"timestamp":"2025-09-01T18:25:16.297Z","severity":"WARNING","category":"API","message":"HTTP 401 response","details":{"endpoint":"/api/auth/me","method":"GET","ip":"127.0.0.1","statusCode":401,"body":{},"query":{}}}
+{"timestamp":"2025-09-01T18:29:22.600Z","severity":"WARNING","category":"AI_GENERATION","message":"OpenAI API key not found, using fallback questions"}

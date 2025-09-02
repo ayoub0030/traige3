@@ -360,6 +360,7 @@ export function generateFallbackQuestions(category, difficulty = 'medium', count
         }
       ]
     },
+    
     ar: {
       'general-knowledge': [
         {
